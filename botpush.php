@@ -18,7 +18,7 @@ $customers = array(
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
-$message = 'มีตำแหน่งงาน PHP Web Developer ใหม่ <br><a href="https://demo-job.leovel.com/" target="_blank">เพิ่มเติม</a>';
+$message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
 foreach ($customers as $key => $value) {
 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
 	$response = $bot->pushMessage($value['pushId'], $textMessageBuilder);
