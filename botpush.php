@@ -8,11 +8,6 @@ $channelSecret = '0c409b000897d0e406a4c0407b9b1423';
 $customers = array(
 	array(
 		'id' => 1,
-		'name' => 'Pak',
-		'pushId' => 'U28aa0979914c25158af0c800f5d1153c' // Pak
-	),
-	array(
-		'id' => 2,
 		'name' => 'Tum',
 		'pushId' => 'U5c1187ba2b5c3fd86adfd3667dd2c3f2' // Tum
 	),
