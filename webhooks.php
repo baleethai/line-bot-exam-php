@@ -27,7 +27,7 @@ if (!is_null($events['events'])) {
 			];
 
 			$cookie_name = "user";
-			$cookie_value = $text;
+			$cookie_value = 'Tum';
 			setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
 			// Make a POST Request to Messaging API to reply to sender
