@@ -54,12 +54,12 @@ if (!is_null($events['events'])) {
 	}
 }
 
-if(!isset($_COOKIE[$cookie_name])) {
-    echo "Cookie named '" . $cookie_name . "' is not set! x";
-} else {
-    echo "Cookie '" . $cookie_name . "' is set!<br>";
-    echo "Value is: " . $_COOKIE[$cookie_name];
-}
+// if(!isset($_COOKIE[$cookie_name])) {
+//     echo "Cookie named '" . $cookie_name . "' is not set! x";
+// } else {
+//     echo "Cookie '" . $cookie_name . "' is set!<br>";
+//     echo "Value is: " . $_COOKIE[$cookie_name];
+// }
 
 
 
