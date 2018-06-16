@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 			$text = $event['source']['userId'];
 
 			$myfile = fopen("data.txt", "w") or die("Unable to open file!");
-			$txt = "{$text}\n";
+			$txt = "{$text}-" . time() . "\n";
 			fwrite($myfile, $txt);
 			fclose($myfile);
 
