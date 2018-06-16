@@ -17,12 +17,17 @@ $customers = array(
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
+print_r(get_class_methods($bot)); exit;
 
-$message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
-foreach ($customers as $key => $value) {
-	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
-	$response = $bot->pushMessage($value['pushId'], $textMessageBuilder);
-}
+// $res = $bot->getGroupMemberProfile('', 'U5c1187ba2b5c3fd86adfd3667dd2c3f2')
+
+// var_dump($res); exit;
+
+// $message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
+// foreach ($customers as $key => $value) {
+// 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
+// 	$response = $bot->pushMessage($value['pushId'], $textMessageBuilder);
+// }
 
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 

@@ -23,7 +23,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => 'Tumx'
+				'text' => $event['source']
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
@@ -43,13 +43,7 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
 			curl_close($ch);
-
-			$cookie_name = "user";
-			$cookie_value = 'Tum';
-			setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
-
 			echo $result . "\r\n";
-
 		}
 	}
 }
