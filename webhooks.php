@@ -12,13 +12,14 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 
-	setcookie('name', 'Tum', time() + (86400 * 30), "/");
-
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+
+			setcookie('name', 'Tum', time() + (86400 * 30), "/");
+			
 			// Get text sent
 			$text = $event['source']['userId'];
 			// Get replyToken
