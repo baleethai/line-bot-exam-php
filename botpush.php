@@ -30,10 +30,13 @@ foreach ($customers as $key => $value) {
 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
 	$response = $bot->pushMessage($value['pushId'], $textMessageBuilder);
 
-	$myfile = fopen("data.txt", "w") or die("Unable to open file!");
-	$txt = "{$value['pushId']}\n";
-	fwrite($myfile, $txt);
-	fclose($myfile);
+	$txt = "user id date";
+ 	$myfile = file_put_contents('data.txt', $txt.PHP_EOL , FILE_APPEND | LOCK_EX);
+
+	// $myfile = fopen("data.txt", "w") or die("Unable to open file!");
+	// $txt = "{$value['pushId']}\n";
+	// fwrite($myfile, $txt);
+	// fclose($myfile);
 
 }
 
