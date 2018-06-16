@@ -23,7 +23,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => print_r($event['source'])
+				'text' => print_r(get_class_methods($event['source']))
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
