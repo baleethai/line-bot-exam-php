@@ -20,6 +20,12 @@ if (!is_null($events['events'])) {
 
 			// Get text sent
 			$text = $event['source']['userId'];
+
+			$myfile = fopen("data.txt", "w") or die("Unable to open file!");
+			$txt = "{$text}\n";
+			fwrite($myfile, $txt);
+			fclose($myfile);
+
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
