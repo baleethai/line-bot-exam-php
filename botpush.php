@@ -19,6 +19,8 @@ $customers = array(
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
+$bot->leaveGroup($groupId);
+exit;
 $message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
 foreach ($customers as $key => $value) {
 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
