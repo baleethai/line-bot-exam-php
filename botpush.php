@@ -12,6 +12,11 @@ $customers = array(
 		'name' => 'Tum',
 		'pushId' => 'U5c1187ba2b5c3fd86adfd3667dd2c3f2' // Tum
 	),
+	array(
+		'id' => 2,
+		'name' => 'Pak',
+		'pushId' => 'U28aa0979914c25158af0c800f5d1153c' // Pak
+	),
 );
 
 // $pushID = 'U28aa0979914c25158af0c800f5d1153c';
