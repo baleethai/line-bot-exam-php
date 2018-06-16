@@ -11,13 +11,12 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
+
+	setcookie('name', 'Tum', time() + (86400 * 30), "/");
+
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		
-		if ($event['type'] == 'group') {
-			$groupId = $event['source']['type'];
-		}
-
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
@@ -28,7 +27,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => $groupId
+				'text' => $text
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
@@ -52,13 +51,6 @@ if (!is_null($events['events'])) {
 		}
 	}
 }
-
-// if(!isset($_COOKIE[$cookie_name])) {
-//     echo "Cookie named '" . $cookie_name . "' is not set! x";
-// } else {
-//     echo "Cookie '" . $cookie_name . "' is set!<br>";
-//     echo "Value is: " . $_COOKIE[$cookie_name];
-// }
 
 
 
