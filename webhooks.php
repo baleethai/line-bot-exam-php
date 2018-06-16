@@ -12,7 +12,7 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 	
-	$varResult = get_class_vars($events['events']);
+	$varResult = print_r($events['events']);
 
 	// Loop through each event
 	foreach ($events['events'] as $event) {
