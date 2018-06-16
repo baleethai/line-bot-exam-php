@@ -11,12 +11,7 @@ $customers = array(
 		'id' => 1,
 		'name' => 'Tum',
 		'pushId' => 'U5c1187ba2b5c3fd86adfd3667dd2c3f2' // Tum
-	),
-	array(
-		'id' => 2,
-		'name' => 'Pak',
-		'pushId' => 'U28aa0979914c25158af0c800f5d1153c' // Pak
-	),
+	)
 );
 
 // $pushID = 'U28aa0979914c25158af0c800f5d1153c';
@@ -26,18 +21,8 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
 $message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
 foreach ($customers as $key => $value) {
-
 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
 	$response = $bot->pushMessage($value['pushId'], $textMessageBuilder);
-
-	$txt = "user id date";
- 	$myfile = file_put_contents('data.txt', $txt.PHP_EOL , FILE_APPEND | LOCK_EX);
-
-	// $myfile = fopen("data.txt", "w") or die("Unable to open file!");
-	// $txt = "{$value['pushId']}\n";
-	// fwrite($myfile, $txt);
-	// fclose($myfile);
-
 }
 
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
