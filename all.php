@@ -8,23 +8,11 @@ $channelSecret = '0c409b000897d0e406a4c0407b9b1423';
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
-$myfile = fopen("data.txt", "w") or die("Unable to open file!");
-$txt = "John Doe\n";
-fwrite($myfile, $txt);
-$txt = "Jane Doe\n";
-fwrite($myfile, $txt);
-fclose($myfile);
-exit;
-
-
-// print_r($bot->getAllGroupMemberIds([]));
-// exit;
-
-// $message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
-// foreach ($customers as $key => $value) {
-// 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
-// 	$response = $bot->pushMessage($value['pushId'], $textMessageBuilder);
-// }
+$message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
+foreach ($customers as $key => $value) {
+	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
+	$response = $bot->pushMessage($value['pushId'], $textMessageBuilder);
+}
 
 // echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
