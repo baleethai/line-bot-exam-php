@@ -15,7 +15,7 @@ if ($_POST) {
 	    // set the PDO error mode to exception
 	    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	    $customers = array();
-	    $sql = "SELECT DISTINCT user_id FROM users";
+	    $sql = "SELECT DISTINCT user_id FROM users WHERE position = " . $_POST['position'];
 	    foreach ($conn->query($sql) as $row) {
 	    	$customers[] = array(
 	    		'user_id' => $row['user_id']
@@ -30,12 +30,13 @@ if ($_POST) {
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
-
+print_r($customers); exit;
 foreach ($customers as $key => $value) {
+	$message = $_POST['message'];
 	if ($_POST['position'] == 1) {
-		$message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
+		// $message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
 	} else {
-		$message = 'มีตำแหน่งงาน Junior Frontend Developer ใหม่';
+		// $message = 'มีตำแหน่งงาน Junior Frontend Developer ใหม่';
 	}
 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
 	$response = $bot->pushMessage($value['user_id'], $textMessageBuilder);
