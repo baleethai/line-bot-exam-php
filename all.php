@@ -48,6 +48,7 @@ tr:nth-child(even) {
 
     $sql = "SELECT * FROM users ";
     foreach ($conn->query($sql) as $row) {
+        
         $html .= '<tr>';
         $displayName = json_decode($row['name'], true);
         $html .= '<td><img src="' . $displayName['pictureUrl'] . '" width="50">  ' . $displayName['displayName'] . '</td>';

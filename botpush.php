@@ -33,7 +33,7 @@ if ($_POST) {
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
-// foreach ($customers as $key => $value) {
+foreach ($customers as $key => $value) {
 	if ($value['position'] == 1) {
 		$message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
 	} else {
