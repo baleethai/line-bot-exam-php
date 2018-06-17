@@ -42,7 +42,7 @@ tr:nth-child(even) {
 <p>2. พิมพ์ข้อความทักทาย เช่น สวัสดี </p>
 <hr>
 
-<h2>Users</h2>
+<h2>Backend</h2>
 
 <table>
   <tr>
@@ -65,7 +65,7 @@ tr:nth-child(even) {
                 curl_close($ch);
 
         $displayName = json_decode($result, true);
-        $html .= '<td><img src="' . $displayName['pictureUrl'] . '" width="50">  ' . $displayName['displayName'] . '</td>';
+        $html .= '<td><img src="' . $displayName['pictureUrl'] . '" width="20">  ' . $displayName['displayName'] . '</td>';
         $html .= '<td>' . $row['user_id'] . '</td>';
         if ($row['position'] == 1) {
             $html .= '<td>PHP Web Developer</td>';
