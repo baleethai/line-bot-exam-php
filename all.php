@@ -50,7 +50,7 @@ tr:nth-child(even) {
     foreach ($conn->query($sql) as $row) {
         $html .= '<tr>';
         $displayName = json_decode($row['name'], true);
-        $html .= '<td><img src="' . $displayName['pictureUrl']'">  ' . $displayName['displayName'] . '</td>';
+        $html .= '<td><img src="' . $displayName['pictureUrl'] . '" width="50">  ' . $displayName['displayName'] . '</td>';
         $html .= '<td>' . $row['user_id'] . '</td>';
         if ($row['position'] == 1) {
             $html .= '<td>PHP Web Developer</td>';
