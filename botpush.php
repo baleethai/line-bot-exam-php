@@ -27,11 +27,16 @@ if ($_POST) {
 }
 
 // $pushID = 'U28aa0979914c25158af0c800f5d1153c';
+
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
 foreach ($customers as $key => $value) {
-	$message = 'xx';
+	if ($_POST['position'] == 1) {
+		$message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
+	} else {
+		$message = 'มีตำแหน่งงาน Junior Frontend Developer ใหม่';
+	}
 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
 	$response = $bot->pushMessage($value['user_id'], $textMessageBuilder);
 }
