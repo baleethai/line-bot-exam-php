@@ -19,23 +19,25 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 
-			// Get text sent
-			$userId = $event['source']['userId'];
-
-			// Get Profile
-			$url = 'https://api.line.me/v2/bot/profile/'.$userId;
-			$headers = array('Authorization: Bearer ' . $access_token);
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			$result = curl_exec($ch);
-			curl_close($ch);
-
+		
 			$servername = "localhost";
 			$username = "job_demo";
 			$password = "job_demo";
 			try {
+				
+				// Get text sent
+				$userId = $event['source']['userId'];
+
+				// Get Profile
+				$url = 'https://api.line.me/v2/bot/profile/'.$userId;
+				$headers = array('Authorization: Bearer ' . $access_token);
+				$ch = curl_init($url);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				$result = curl_exec($ch);
+				curl_close($ch);
+
 			    $conn = new PDO("mysql:host=$servername;dbname=job_demo", $username, $password);
 			    // set the PDO error mode to exception
 			    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -47,8 +49,8 @@ if (!is_null($events['events'])) {
 			    $stmt->bindParam(':position', $position);
 
 			    // insert a row
-			    $user_id = 1;
-			    $name = 2;
+			    $user_id = $userId;
+			    $name = $userId;
 			    $position = rand(1, 2);
 			    $stmt->execute();
 
