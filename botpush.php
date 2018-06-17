@@ -27,10 +27,9 @@ if ($_POST) {
 }
 
 // $pushID = 'U28aa0979914c25158af0c800f5d1153c';
-
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
-print_r($customers); exit;
+
 foreach ($customers as $key => $value) {
 	$message = 'xx';
 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
