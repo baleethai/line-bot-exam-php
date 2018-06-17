@@ -62,10 +62,9 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			$displayName = json_decode($row['name'], true);
 			$messages = [
 				'type' => 'text',
-				'text' => 'สวัสดี ' . $displayName['displayName']
+				'text' => 'สวัสดี ' . $userId
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
