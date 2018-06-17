@@ -40,7 +40,7 @@ foreach ($customers as $key => $value) {
 		$message = 'มีตำแหน่งงาน Junior Frontend Developer ใหม่';
 	}
 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
-	$response = $bot->pushMessage($value['pushId'], $textMessageBuilder);
+	$response = $bot->pushMessage($value['user_id'], $textMessageBuilder);
 }
 ?>
 <script type="text/javascript">
