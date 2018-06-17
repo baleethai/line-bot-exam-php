@@ -47,8 +47,8 @@ if (!is_null($events['events'])) {
 			    $stmt->bindParam(':position', $position);
 
 			    // insert a row
-			    $user_id = $userId;
-			    $name = $result;
+			    $user_id = 1;
+			    $name = 2;
 			    $position = rand(1, 2);
 			    $stmt->execute();
 
