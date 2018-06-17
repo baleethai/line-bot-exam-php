@@ -1,3 +1,4 @@
+
 <?php
 
 require "vendor/autoload.php";
@@ -36,6 +37,10 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
+<p>1. เพิ่มเพื่อน </p>
+<img src="img/qr.png">
+<p>2. พิมพ์ข้อความทักทาย เช่น สวัสดี </p>
+<hr>
 
 <h2>Users</h2>
 
