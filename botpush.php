@@ -30,9 +30,9 @@ if ($_POST) {
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
-print_r($customers); exit;
+
 foreach ($customers as $key => $value) {
-	$message = $_POST['message'];
+	$message = trim($_POST['message']);
 	if ($_POST['position'] == 1) {
 		// $message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
 	} else {
