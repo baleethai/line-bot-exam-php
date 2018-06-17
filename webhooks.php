@@ -22,6 +22,17 @@ if (!is_null($events['events'])) {
 			// Get text sent
 			$userId = $event['source']['userId'];
 
+			// Get Profile
+			$url = 'https://api.line.me/v2/bot/profile/'.$userId;
+			$headers = array('Authorization: Bearer ' . $access_token);
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			$result = curl_exec($ch);
+			curl_close($ch);
+			// echo $result['displayName'];
+
 			$servername = "localhost";
 			$username = "job_demo";
 			$password = "job_demo";
@@ -39,7 +50,7 @@ if (!is_null($events['events'])) {
 
 			    // insert a row
 			    $user_id = $userId;
-			    $name = rand(1, 999999);
+			    $name = $result['displayName'];
 			    $position = rand(1, 2);
 			    $stmt->execute();
 
@@ -48,32 +59,32 @@ if (!is_null($events['events'])) {
 			}
 
 			// Get replyToken
-			$replyToken = $event['replyToken'];
+			// $replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			$messages = [
-				'type' => 'text',
-				'text' => $userId
-			];
+			// $messages = [
+			// 	'type' => 'text',
+			// 	'text' => $userId
+			// ];
 
 			// Make a POST Request to Messaging API to reply to sender
-			$url = 'https://api.line.me/v2/bot/message/reply';
-			$data = [
-				'replyToken' => $replyToken,
-				'messages' => [$messages],
-			];
-			$post = json_encode($data);
-			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+			// $url = 'https://api.line.me/v2/bot/message/reply';
+			// $data = [
+			// 	'replyToken' => $replyToken,
+			// 	'messages' => [$messages],
+			// ];
+			// $post = json_encode($data);
+			// $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			$result = curl_exec($ch);
-			curl_close($ch);
-			echo $result . "\r\n";
+			// $ch = curl_init($url);
+			// curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			// curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			// $result = curl_exec($ch);
+			// curl_close($ch);
+			// echo $result . "\r\n";
 		}
 	}
 }
