@@ -7,8 +7,8 @@ $channelSecret = '0c409b000897d0e406a4c0407b9b1423';
 
 if ($_POST) {
 	$servername = "localhost";
-	$username = "root";
-	$password = "root";
+	$username = "job_demo";
+	$password = "job_demo";
 
 	try {
 	    $conn = new PDO("mysql:host=$servername;dbname=job_demo", $username, $password);
