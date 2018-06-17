@@ -51,7 +51,7 @@ tr:nth-child(even) {
     <th>Job</th>
   </tr>';
 
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT *, DISTINCT user_id FROM users ORDER BY id DESC";
     foreach ($conn->query($sql) as $row) {
         $html .= '<tr>';
                 // Get Profile
