@@ -49,7 +49,17 @@ tr:nth-child(even) {
     $sql = "SELECT * FROM users";
     foreach ($conn->query($sql) as $row) {
         $html .= '<tr>';
-        $displayName = json_decode($row['name'], true);
+                // Get Profile
+                $url = 'https://api.line.me/v2/bot/profile/'.$row['user_id'];
+                $headers = array('Authorization: Bearer ' . $access_token);
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                $result = curl_exec($ch);
+                curl_close($ch);
+
+        $displayName = json_decode($result, true);
         $html .= '<td><img src="' . $displayName['pictureUrl'] . '" width="50">  ' . $displayName['displayName'] . '</td>';
         $html .= '<td>' . $row['user_id'] . '</td>';
         if ($row['position'] == 1) {
