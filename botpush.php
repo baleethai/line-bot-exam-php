@@ -44,8 +44,8 @@ foreach ($customers as $key => $value) {
 }
 ?>
 <script type="text/javascript">
-	window.alert("success");
-	window.location.href = "./all.php";
+	// window.alert("success");
+	// window.location.href = "./all.php";
 </script>
 
 <?php
