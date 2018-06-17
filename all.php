@@ -17,7 +17,7 @@ try {
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT DISTINCT(user_id), * FROM users";
     $html = '<table width="100"><tr><th>Name</th><th>User ID</th></tr>';
     foreach ($conn->query($sql) as $row) {
         $html .= '<tr>';
