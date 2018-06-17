@@ -16,22 +16,23 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=job_demo", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // $sql = "SELECT * FROM users";
-    // foreach ($conn->query($sql) as $row) {
-    //     print $row['name'] . "\n";
-    //     print $row['user_id'] . "\n";
-    // }
+
+    $sql = "SELECT * FROM users";
+    foreach ($conn->query($sql) as $row) {
+        print $row['name'] . "\n";
+        print $row['user_id'] . "\n";
+    }
 
     // prepare sql and bind parameters
-    $stmt = $conn->prepare("INSERT INTO users (user_id, name) 
-    VALUES (:user_id, :name)");
-    $stmt->bindParam(':user_id', $user_id);
-    $stmt->bindParam(':name', $name);
+    // $stmt = $conn->prepare("INSERT INTO users (user_id, name) 
+    // VALUES (:user_id, :name)");
+    // $stmt->bindParam(':user_id', $user_id);
+    // $stmt->bindParam(':name', $name);
 
-    // insert a row
-    $user_id = "1214sljflkjhhh";
-    $name = "John";
-    $stmt->execute();
+    // // insert a row
+    // $user_id = "1214sljflkjhhh";
+    // $name = "John";
+    // $stmt->execute();
 
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();

@@ -13,8 +13,6 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 	
-	$varResult = json_encode($events['events']);
-
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 	
@@ -22,12 +20,30 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 
 			// Get text sent
-			$text = $event['source']['userId'];
+			$userId = $event['source']['userId'];
 
-			// $myfile = fopen("data.txt", "w") or die("Unable to open file!");
-			// $txt = "{$text}-" . time() . "\n";
-			// fwrite($myfile, $txt);
-			// fclose($myfile);
+			$servername = "localhost";
+			$username = "job_demo";
+			$password = "job_demo";
+			try {
+			    $conn = new PDO("mysql:host=$servername;dbname=job_demo", $username, $password);
+			    // set the PDO error mode to exception
+			    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+			    // prepare sql and bind parameters
+			    $stmt = $conn->prepare("INSERT INTO users (user_id, name) 
+			    VALUES (:user_id, :name)");
+			    $stmt->bindParam(':user_id', $user_id);
+			    $stmt->bindParam(':name', $name);
+
+			    // insert a row
+			    $user_id = $userId;
+			    $name = "John";
+			    $stmt->execute();
+
+			} catch(PDOException $e) {
+			    echo "Connection failed: " . $e->getMessage();
+			}
 
 			// Get replyToken
 			$replyToken = $event['replyToken'];
@@ -35,7 +51,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => $varResult
+				'text' => $userId
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
@@ -57,7 +73,6 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 			echo $result . "\r\n";
 		}
-
 	}
 }
 
