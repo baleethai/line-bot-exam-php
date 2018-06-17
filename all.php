@@ -18,11 +18,15 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $sql = "SELECT * FROM users";
+    $html = '<table width="100"><tr><th>Name</th><th>User ID</th></tr>'
     foreach ($conn->query($sql) as $row) {
-        print $row['name'] . "\n";
-        print $row['user_id'] . "\n";
+        $html .= '<tr>';
+        $html .= '<td>' . $row['name'] . '</td>';
+        $html .= '<td>' . $row['user_id'] . '</td>';
+        $html .= '</tr>';
     }
-
+    $html .= '</table>';
+    
     // prepare sql and bind parameters
     // $stmt = $conn->prepare("INSERT INTO users (user_id, name) 
     // VALUES (:user_id, :name)");
@@ -37,6 +41,8 @@ try {
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
+
+echo $html;
 
 
 
