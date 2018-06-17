@@ -9,23 +9,58 @@ $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
 $servername = "localhost";
-$username = "job_demo";
-$password = "job_demo";
+$username = "root";
+$password = "root";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=job_demo", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT DISTINCT user_id FROM users";
-    $html = '<table width="100"><tr><th>Name</th><th>User ID</th></tr>';
+    $html = '<!DOCTYPE html><html><head><style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Users</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>UserId</th>
+    <th>Job</th>
+  </tr>';
+
+    $sql = "SELECT * FROM users GROUP BY user_id";
     foreach ($conn->query($sql) as $row) {
         $html .= '<tr>';
         $html .= '<td>' . $row['name'] . '</td>';
         $html .= '<td>' . $row['user_id'] . '</td>';
+        if ($row['position'] == 1) {
+            $html .= '<td>PHP Web Developer</td>';
+        } else {
+            $html .= '<td>Junior Frontend Developer</td>';
+        }
+
         $html .= '</tr>';
     }
-    $html .= '</table>';
+    $html .= '</table></body>
+</html>';
     
     // prepare sql and bind parameters
     // $stmt = $conn->prepare("INSERT INTO users (user_id, name) 
@@ -43,6 +78,32 @@ try {
 }
 
 echo $html;
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<h2>ส่งงาน</h2>
+<form action="./botpush.php" method="POST">
+  ตำแหน่งงาน:<br>
+  <select name="position">
+      <option value="1">PHP Web Developer</option>
+      <option value="2">Junior Frontend Developer</option>
+  </select>
+  <br>
+  รายละเอียดงาน:<br>
+  <textarea type="text" name="description" rows="8"></textarea><br>
+  * เช่น มีตำแหน่งงานใหม่ PHP Web Developer
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+</body>
+</html>
 
 
 

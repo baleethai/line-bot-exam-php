@@ -31,14 +31,16 @@ if (!is_null($events['events'])) {
 			    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 			    // prepare sql and bind parameters
-			    $stmt = $conn->prepare("INSERT INTO users (user_id, name) 
-			    VALUES (:user_id, :name)");
+			    $stmt = $conn->prepare("INSERT INTO users (user_id, name, position) 
+			    VALUES (:user_id, :name, :position)");
 			    $stmt->bindParam(':user_id', $user_id);
 			    $stmt->bindParam(':name', $name);
+			    $stmt->bindParam(':position', $position);
 
 			    // insert a row
 			    $user_id = $userId;
 			    $name = rand(1, 999999);
+			    $position = rand(1, 2);
 			    $stmt->execute();
 
 			} catch(PDOException $e) {
