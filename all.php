@@ -43,7 +43,7 @@ tr:nth-child(even) {
 <hr>
 
 <h2>Backend</h2>
-
+<p>1. Refresh Page</p>
 <table>
   <tr>
     <th>Name</th>
@@ -102,7 +102,8 @@ echo $html;
     <title></title>
 </head>
 <body>
-
+<p>2. เลือกตำแหน่งงาน </p>
+<p>3. พิมพ์ข้อความเพื่อนส่งตำแหน่งงาน (ตรงนี้อาจจดึงมาจากตำแหน่งงานในระบบ) </p>
 <h2>ส่งงาน</h2>
 <form action="./botpush.php" method="POST">
   ตำแหน่งงาน:<br>
