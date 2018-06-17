@@ -15,12 +15,10 @@ if ($_POST) {
 	    // set the PDO error mode to exception
 	    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	    $customers = array();
-	    $sql = "SELECT * FROM users GROUP BY user_id";
+	    $sql = "SELECT DISTINCT user_id FROM users";
 	    foreach ($conn->query($sql) as $row) {
 	    	$customers[] = array(
-	    		'name' => $row['name'],
-	    		'user_id' => $row['user_id'],
-	    		'position' => $_POST['position']
+	    		'user_id' => $row['user_id']
 	    	);
 	    }
 	} catch(PDOException $e) {
@@ -34,7 +32,7 @@ $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
 foreach ($customers as $key => $value) {
-	if ($value['position'] == 1) {
+	if ($_POST['position'] == 1) {
 		$message = 'มีตำแหน่งงาน PHP Web Developer ใหม่';
 	} else {
 		$message = 'มีตำแหน่งงาน Junior Frontend Developer ใหม่';
@@ -44,8 +42,8 @@ foreach ($customers as $key => $value) {
 }
 ?>
 <script type="text/javascript">
-	// window.alert("success");
-	// window.location.href = "./all.php";
+	window.alert("success");
+	window.location.href = "./all.php";
 </script>
 
 <?php
