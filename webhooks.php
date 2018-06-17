@@ -38,7 +38,7 @@ if (!is_null($events['events'])) {
 
 			    // insert a row
 			    $user_id = $userId;
-			    $name = "John";
+			    $name = rand(1, 999999);
 			    $stmt->execute();
 
 			} catch(PDOException $e) {
