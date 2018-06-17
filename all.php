@@ -46,9 +46,8 @@ tr:nth-child(even) {
     <th>Job</th>
   </tr>';
 
-    $sql = "SELECT * FROM users ";
+    $sql = "SELECT * FROM users GROUP BY user_id";
     foreach ($conn->query($sql) as $row) {
-        
         $html .= '<tr>';
         $displayName = json_decode($row['name'], true);
         $html .= '<td><img src="' . $displayName['pictureUrl'] . '" width="50">  ' . $displayName['displayName'] . '</td>';
