@@ -30,9 +30,9 @@ if ($_POST) {
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
-
+print_r($customers); exit;
 foreach ($customers as $key => $value) {
-	$message = $_POST['description'];
+	$message = 'xx';
 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
 	$response = $bot->pushMessage($value['user_id'], $textMessageBuilder);
 }
