@@ -8,6 +8,35 @@ $channelSecret = '0c409b000897d0e406a4c0407b9b1423';
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
+$servername = "localhost";
+$username = "job_demo";
+$password = "job_demo";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=job_demo", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // $sql = "SELECT * FROM users";
+    // foreach ($conn->query($sql) as $row) {
+    //     print $row['name'] . "\n";
+    //     print $row['user_id'] . "\n";
+    // }
+
+    // prepare sql and bind parameters
+    $stmt = $conn->prepare("INSERT INTO users (user_id, name) 
+    VALUES (:user_id, :name)");
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->bindParam(':name', $name);
+
+    // insert a row
+    $user_id = "1214sljflkjhhh";
+    $name = "John";
+    $stmt->execute();
+
+} catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
 
 
 
