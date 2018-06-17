@@ -31,7 +31,7 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
 			curl_close($ch);
-			// echo $result['displayName'];
+			$profile = json_decode($result['displayName']);
 
 			$servername = "localhost";
 			$username = "job_demo";
@@ -50,7 +50,7 @@ if (!is_null($events['events'])) {
 
 			    // insert a row
 			    $user_id = $userId;
-			    $name = $result['displayName'];
+			    $name = $profile['displayName'];
 			    $position = rand(1, 2);
 			    $stmt->execute();
 
