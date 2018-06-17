@@ -18,7 +18,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $sql = "SELECT * FROM users";
-    $html = '<table width="100"><tr><th>Name</th><th>User ID</th></tr>'
+    $html = '<table width="100"><tr><th>Name</th><th>User ID</th></tr>';
     foreach ($conn->query($sql) as $row) {
         $html .= '<tr>';
         $html .= '<td>' . $row['name'] . '</td>';
