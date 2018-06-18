@@ -10,8 +10,8 @@ $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
 $servername = "localhost";
-$username = "job_demo";
-$password = "job_demo";
+$username = "root";
+$password = "root";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=job_demo", $username, $password);

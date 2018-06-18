@@ -31,18 +31,24 @@ if (!is_null($events['events'])) {
 			    $conn = new PDO("mysql:host=$servername;dbname=job_demo", $username, $password);
 			    // set the PDO error mode to exception
 			    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			    // prepare sql and bind parameters
-			    $stmt = $conn->prepare("INSERT INTO users (user_id, name, position) 
-			    VALUES (:user_id, :name, :position)");
-			    $stmt->bindParam(':user_id', $user_id);
-			    $stmt->bindParam(':name', $name);
-			    $stmt->bindParam(':position', $position);
+			    
+			    $res = $conn->query('SELECT user_id FROM users WHERE user_id = "U5c1187ba2b5c3fd86adfd3667dd2c3f2" ', PDO::FETCH_ASSOC);                
+			    
+			    if ($res->rowCount() == 0) {
 
-			    // insert a row
-			    $user_id = $userId;
-			    $name = $userId;
-			    $position = rand(1, 2);
-			    $stmt->execute();
+				    // prepare sql and bind parameters
+				    $stmt = $conn->prepare("INSERT INTO users (user_id, name, position) 
+				    VALUES (:user_id, :name, :position)");
+				    $stmt->bindParam(':user_id', $user_id);
+				    $stmt->bindParam(':name', $name);
+				    $stmt->bindParam(':position', $position);
+
+				    // insert a row
+				    $user_id = $userId;
+				    $name = $userId;
+				    $position = rand(1, 2);
+				    $stmt->execute();
+				}
 
 			} catch(PDOException $e) {
 			    echo "Connection failed: " . $e->getMessage();
