@@ -34,7 +34,7 @@ if (!is_null($events['events'])) {
 			    
 			    $res = $conn->query('SELECT user_id FROM users WHERE user_id = ' . $userId, PDO::FETCH_ASSOC);                
 			    
-			    if ($res->rowCount() == 0) {
+			    // if ($res->rowCount() == 0) {
 
 				    // prepare sql and bind parameters
 				    $stmt = $conn->prepare("INSERT INTO users (user_id, name, position) 
@@ -48,7 +48,7 @@ if (!is_null($events['events'])) {
 				    $name = $userId;
 				    $position = rand(1, 2);
 				    $stmt->execute();
-				}
+				// }
 
 			} catch(PDOException $e) {
 			    echo "Connection failed: " . $e->getMessage();
