@@ -46,9 +46,9 @@ tr:nth-child(even) {
 <p>1. Refresh Page</p>
 <table>
   <tr>
-    <th>Name</th>
-    <th>UserId</th>
-    <th>Job</th>
+    <th>รูปภาพ/ชื่อ</th>
+    <th>รหัส</th>
+    <th>งานที่สนใจ</th>
   </tr>';
 
     $sql = "SELECT * FROM users";
