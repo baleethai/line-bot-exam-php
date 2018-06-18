@@ -32,7 +32,7 @@ if (!is_null($events['events'])) {
 			    // set the PDO error mode to exception
 			    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			    
-			    $res = $conn->query('SELECT user_id FROM users WHERE user_id = "U5c1187ba2b5c3fd86adfd3667dd2c3f2" ', PDO::FETCH_ASSOC);                
+			    $res = $conn->query('SELECT user_id FROM users WHERE user_id = {$userId}', PDO::FETCH_ASSOC);                
 			    
 			    if ($res->rowCount() == 0) {
 
